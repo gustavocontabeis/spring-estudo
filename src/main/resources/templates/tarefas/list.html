@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Tarefas Listagem</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}" />
+</head>
+<body>
+	<div th:each="obj: ${list}">
+		<span th:text="${obj.id}"></span> 
+		<span th:text="${obj.nome}"></span>
+		<span th:text="${#numbers.formatDecimal(obj.valor,1,2)}"></span>
+	</div>
+</body>
+</html>

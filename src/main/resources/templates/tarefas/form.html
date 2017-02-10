@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Tarefas Form</title>
+<link rel="stylesheet" type="text/css" href="/css/estilo.css" />
+</head>
+<body>
+	<form method="post" th:object="${obj}">
+		
+		<div th:text="${#fields.hasAnyErrors()}"></div>
+		<div th:if="${#fields.hasAnyErrors()}">
+			<th:block th:each="error : ${#fields.detailedErrors()}">
+				<span th:text="${error.message}"></span>
+			</th:block>
+		</div>
+		
+		
+		
+		<label for="id" th:text="#{tarefa.id}"></label>
+		<input id="id" name="id" th:field="*{id}" /> 
+		
+		<label for="nome" th:text="#{tarefa.nome}"></label>
+		<input id="nome" name="nome" th:field="*{nome}" /> 
+		
+		<label for="tipo" th:text="#{tarefa.tipo}"></label>
+		<select id="tipo" th:field="*{tipo}">
+			<option value="">[Selecione]</option>
+			<option th:each="tipo : ${tipos}" th:value="${tipo}" th:text="#{|tarefa.tipo.${tipo}|}"></option>
+		</select>
+
+		<label for="valor" th:text="#{tarefa.valor}"></label>
+		<input id="valor" name="valor" th:field="*{valor}" /> 
+
+		<input type="submit" />
+	</form>
+
+	<div th:text="${obj.id}"></div>
+	<div th:text="${obj.nome}"></div>
+	<div th:text="${obj.tipo}"></div>
+	<div th:text="${obj.valor}"></div>
+
+</body>
+</html>
